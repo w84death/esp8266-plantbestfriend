@@ -7,19 +7,41 @@
 
 <main>
 
-<section class="main">
+<!-- <section class="main">
     <status class="green"><icon>👍</icon>OK</status>
-    <!-- <status class="red"><icon>🌊</icon>NEED WATER!</status> -->
-    <!-- <status class="red"><icon>🔥</icon>TO HOT!</status> -->
-    <!-- <status class="blue"><icon>☃️</icon>TO COLD!</status> -->
-</section>
+</section> -->
 
 <section>
-    <status><icon>💦</icon>30%<small>ENVIRONMENT HUMIDITY</small> </status>
-    <status><icon>❄️</icon>26°C<small>ENVIRONMENT TEMP</small></status>
-    <status><icon>💧</icon>60%<small>SOIL MOISURE</small></status>
+    <status><icon>💦</icon><span id="humi">?</span><small>ENVIRONMENT HUMIDITY</small> </status>
+    <status><icon>❄️</icon><span id="temp">?</span><small>ENVIRONMENT TEMP</small></status>
+    <status><icon>💧</icon><span id="mois">?</span><small>SOIL MOISURE</small></status>
 </section>  
 
 <footer>
-    <p><small>🕑 2021 14:37 09/10/2021</small></p>
+    <!-- <p><small>🕑 <span id="timestamp">?</span></small></p> -->
     &copy; 2020 <a href=cyfrowynomada.eu>Cyfrowy Nomada</a> / <a href=p1x.in>P1X</a>
+
+<script>
+    var HttpClient = function() {
+        this.get = function(aUrl, aCallback) {
+            var httpReq = new XMLHttpRequest();
+            httpReq.onreadystatechange = function() { 
+                if (httpReq.readyState == 4 && httpReq.status == 200)
+                    aCallback(httpReq.responseText);
+            }
+            httpReq.open( "GET", aUrl, true );            
+            httpReq.send( null );
+        };
+    }
+
+    var client = new HttpClient();
+    client.get('/temp', function(response) {
+        document.getElementById("temp").innerHTML = response + "°C";
+    });
+    client.get('/humi', function(response) {
+        document.getElementById("humi").innerHTML = response + "%";
+    });
+    client.get('/mois', function(response) {
+        document.getElementById("mois").innerHTML = response + "%";
+    });
+</script>
