@@ -3,11 +3,16 @@
 #include <FS.h>
 #include <DHT.h>
 
-const char* ssid = "P1X_2.4GHz"; //Enter SSID
-const char* password = "dawajneta"; //Enter Password
+const char* ssid = "P1X_2.4GHz";
+const char* password = "dawajneta";
+
+#define SOILPIN 0
+#define SOILMIN 300
+#define SOILMAX 600
 
 #define DHTPIN 2
 #define DHTTYPE DHT11
+
 DHT dht(DHTPIN, DHTTYPE, 15);
 
 float sens_temp = 0.0;
@@ -25,10 +30,11 @@ void setup(void){
     Serial.println('\n');
     delay(1000);
     Serial.println("----------------------------------------");
-    Serial.println("  WELCOME TO THE < PLANT BEST FRIEND >  ");
+    Serial.println("         STRAIGHT FROM THE POT...       ");
+    Serial.println("          < PLANT BEST FRIEND >         ");
     Serial.println("----------------------------------------");
     delay(1000);
-    
+    Serial.println('\n');
     Serial.print("> Connecting to WiFi [");
     WiFi.begin(ssid, password);
     while (WiFi.status() != WL_CONNECTED) 
@@ -40,7 +46,7 @@ void setup(void){
     Serial.println("> WiFi connection Successful");
 
     Serial.println("----------------------------------------");    
-    Serial.print("> The IP Address of ESP8266 Module is: ");
+    Serial.print("> The IP Address: ");
     Serial.println(WiFi.localIP());
     Serial.println("----------------------------------------");
 
@@ -108,8 +114,12 @@ bool handleFileRead(String path) {
 
 void updateSensorsReadings() {
   sens_temp = dht.readTemperature();
+  delay(100);
   sens_humi = dht.readHumidity();
-  sens_mois = 0.0;
+  delay(100);
+  
+  sens_mois = 100 - map(analogRead(SOILPIN), 300, 600, 0, 100);
+
   Serial.println("> Sensors reading: ");
   Serial.println("\t-> Temperature: " + String(sens_temp, DEC) + "°C");
   Serial.println("\t-> Humidity: " + String(sens_humi, DEC) + "%");

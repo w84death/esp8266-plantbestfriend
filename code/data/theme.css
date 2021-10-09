@@ -1,6 +1,6 @@
-html{background:rgb(94, 144, 94) url(bg.gif) center top no-repeat;background-size:cover;padding-top:32px;}
+html{background:rgb(94, 144, 94);padding-top:32px;}
 body{font:14px Consolas, Ubuntu Monospace, Monospace;min-width:320px;max-width:640px;margin:0 auto;padding:0;color:rgb(50,50,52);}
-main{padding:1em;background-color:#fffffff0; border-radius:32px;}
+main{padding:1em;}
 footer{text-align:center; margin-top:32px;}
 header{padding-top:2em;} footer{margin-top:32px;}
 blockquote{font-size:22px;font-style:italic;}
@@ -8,27 +8,15 @@ h1{margin:0;font:110px Arial,Sans-serif;text-align:center;letter-spacing:-14px;l
 h2+img,h3+img{float:right;margin:1em -4em 1em 2em;width:190px;}
 h2{clear:both;}
 p>img{width:100%;}
+img {border-radius:8pxx;}
 b{background-color:yellow;color:blue;}
-section{display:flex; flex-direction:row; justify-content:center;margin-top:32px;}
+section{display:flex; flex-direction:row; justify-content:center;margin-top:32px; text-align:center;}
 section:first-child{margin:64px 0;}
-status{display:flex; font-weight:900;font-size:48px;text-align:center;flex-direction:column;padding: 8px 24px; background:white; border-radius:32px; margin: 0 32px;box-shadow: 2px 4px 0px black; border: 1px solid black;}
+status{display:flex; font-weight:900;font-size:48px;text-align:center;flex-direction:column;padding: 8px 24px; background:white; border-radius:32px; margin: 0 32px;box-shadow: 2px 4px 0px black; border:6px solid black;}
 status small{font-size:12px; color:#888;}
 status.green {background-color: aquamarine;}
 status.red{color:white;background-color:tomato;}
 status.blue{color:blue;background-color:paleturquoise;}
 section.main{font-size:64px;}
-
-button {
-    font-weight: 900;
-    font-size: 24px;
-    padding: 8px 24px;
-    background-color: blanchedalmond;
-    border-radius: 16px;
-    margin: 0 32px;
-    box-shadow: 2px 4px 0px black;
-    border: 1px solid black;
-    cursor: pointer;
-    height: 46px;
-}
-
+button {font-weight: 900;font-size: 24px;padding: 8px 24px;background-color: blanchedalmond;border-radius: 16px;margin: 0 32px;box-shadow: 2px 4px 0px black;border: 1px solid black;cursor: pointer;height: 46px;}
 button:hover {background-color:white;}
