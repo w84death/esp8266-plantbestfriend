@@ -1,6 +1,6 @@
 html{background:rgb(94, 144, 94) url(bg.gif) center top no-repeat;background-size:cover;padding-top:32px;}
 body{font:14px Consolas, Ubuntu Monospace, Monospace;min-width:320px;max-width:640px;margin:0 auto;padding:0;color:rgb(50,50,52);}
-main{padding:1em;background-color:#ffffffbd; border-radius:4px;}
+main{padding:1em;background-color:#fffffff0; border-radius:32px;}
 footer{text-align:center; margin-top:32px;}
 header{padding-top:2em;} footer{margin-top:32px;}
 blockquote{font-size:22px;font-style:italic;}
@@ -11,6 +11,9 @@ p>img{width:100%;}
 b{background-color:yellow;color:blue;}
 section{display:flex; flex-direction:row; justify-content:center;margin-top:32px;}
 section:first-child{margin:64px 0;}
-status{display:flex;font-weight:900;font-size:48px;text-align:center;flex-direction:column;padding:0px 32px;padding: 8px 24px; background: white; border-radius: 16px; margin: 0 32px;}
-status small{font-size:12px; color:#666;}
-status.alarm{color:red;}
+status{display:flex; font-weight:900;font-size:48px;text-align:center;flex-direction:column;padding: 8px 24px; background:white; border-radius:32px; margin: 0 32px;box-shadow: 2px 4px 0px black; border: 1px solid black;}
+status small{font-size:12px; color:#888;}
+status.green {background-color: aquamarine;}
+status.red{color:white;background-color:tomato;}
+status.blue{color:blue;background-color:paleturquoise;}
+section.main{font-size:64px;}
