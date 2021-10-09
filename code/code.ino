@@ -33,12 +33,11 @@ void setup(void){
     Serial.println("----------------------------------------");    
     Serial.println("> The IP Address of ESP8266 Module is: ");
     Serial.print("> ");
-    Serial.print(WiFi.localIP());
+    Serial.println(WiFi.localIP());
     Serial.println("----------------------------------------");
 
     SPIFFS.begin();
-    server.on("/", handleRoot);
-     server.onNotFound([]() {
+    server.onNotFound([]() {
       if (!handleFileRead(server.uri()))
         server.send(404, "text/plain", "404: Not Found");
     });
@@ -49,11 +48,6 @@ void setup(void){
 void loop(void){
   server.handleClient();
 }
-
-void handleRoot() {
-  server.send(200, "text/plain", "Hello world!");
-}
-
 
 String getContentType(String filename) {
   if (filename.endsWith(".html")) return "text/html";
