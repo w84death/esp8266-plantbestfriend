@@ -6,26 +6,13 @@
 const char* ssid = "P1X_2.4GHz"; //Enter SSID
 const char* password = "dawajneta"; //Enter Password
 
-#define DHTPIN 5     
-#define DHTTYPE    DHT22
-DHT dht(DHTPIN, DHTTYPE);
+#define DHTPIN 2
+#define DHTTYPE DHT11
+DHT dht(DHTPIN, DHTTYPE, 15);
 
 float sens_temp = 0.0;
 float sens_humi = 0.0;
 float sens_mois = 0.0;
-
-const char* html_temp = "%TEMP%";
-const char* html_humi = "%HUMI%";
-const char* html_mois = "%MOIS%";
-const char* html_status_color = "%SCOLOR%";
-const char* html_status_icon = "%SICON%";
-const char* html_status_msg = "%SMSG%";
-const char* html_status_time = "%TIMESTAMP%";
-
-const char* icon_ok = "👍";
-const char* icon_water = "🌊";
-const char* icon_hot = "🔥";
-const char* icon_cold = "☃";
 
 ESP8266WebServer server(80);
 
@@ -95,6 +82,7 @@ String getContentType(String filename) {
   else if (filename.endsWith(".css")) return "text/css";
   else if (filename.endsWith(".js")) return "application/javascript";
   else if (filename.endsWith(".gif")) return "image/gif";
+  else if (filename.endsWith(".svg")) return "image/svg+xml ";
   return "text/plain";
 }
 

@@ -1,26 +1,8 @@
 <html lang=en>
 <meta charset=utf-8>
 <link rel=stylesheet href=theme.css>
-<title>🪴 👍 // Plant Best Friend / ESP8266 IoT</title>
-
-<header><h1>🪴 Plant Best Friend</h1></header>
-
-<main>
-
-<!-- <section class="main">
-    <status class="green"><icon>👍</icon>OK</status>
-</section> -->
-
-<section>
-    <status><icon>💦</icon><span id="humi">?</span><small>ENVIRONMENT HUMIDITY</small> </status>
-    <status><icon>❄️</icon><span id="temp">?</span><small>ENVIRONMENT TEMP</small></status>
-    <status><icon>💧</icon><span id="mois">?</span><small>SOIL MOISURE</small></status>
-</section>  
-
-<footer>
-    <!-- <p><small>🕑 <span id="timestamp">?</span></small></p> -->
-    &copy; 2020 <a href=cyfrowynomada.eu>Cyfrowy Nomada</a> / <a href=p1x.in>P1X</a>
-
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<title>🪴 // Plant Best Friend / ESP8266 IoT</title>
 <script>
     var HttpClient = function() {
         this.get = function(aUrl, aCallback) {
@@ -33,15 +15,31 @@
             httpReq.send( null );
         };
     }
+    var RefreshData = function() {
+        var client = new HttpClient();
+        client.get('/update', function(){});
+        client.get('/temp', function(response) {
+            document.getElementById("temp").innerHTML = Math.round(response) + "°C";
+        });
+        client.get('/humi', function(response) {
+            document.getElementById("humi").innerHTML = Math.round(response) + "%";
+        });
+        client.get('/mois', function(response) {
+            document.getElementById("mois").innerHTML = Math.round(response) + "%";
+        });
+    }
 
-    var client = new HttpClient();
-    client.get('/temp', function(response) {
-        document.getElementById("temp").innerHTML = response + "°C";
-    });
-    client.get('/humi', function(response) {
-        document.getElementById("humi").innerHTML = response + "%";
-    });
-    client.get('/mois', function(response) {
-        document.getElementById("mois").innerHTML = response + "%";
-    });
+    RefreshData();
 </script>
+<header><h1>🪴 Plant Best Friend</h1></header>
+<main>
+<section>
+    <status><icon>💦</icon><span id="humi">?</span><small>ENVIRONMENT HUMIDITY</small> </status>
+    <status><icon>❄️</icon><span id="temp">?</span><small>ENVIRONMENT TEMP</small></status>
+    <status><icon>💧</icon><span id="mois">?</span><small>SOIL MOISURE</small></status>
+</section> 
+<section>
+    <button id="refresh" onclick="RefreshData();">REFRESH</button>
+</section>
+<footer>
+    &copy; 2020 <a href=cyfrowynomada.eu>Cyfrowy Nomada</a> / <a href=p1x.in>P1X</a>

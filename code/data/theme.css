@@ -17,3 +17,18 @@ status.green {background-color: aquamarine;}
 status.red{color:white;background-color:tomato;}
 status.blue{color:blue;background-color:paleturquoise;}
 section.main{font-size:64px;}
+
+button {
+    font-weight: 900;
+    font-size: 24px;
+    padding: 8px 24px;
+    background-color: blanchedalmond;
+    border-radius: 16px;
+    margin: 0 32px;
+    box-shadow: 2px 4px 0px black;
+    border: 1px solid black;
+    cursor: pointer;
+    height: 46px;
+}
+
+button:hover {background-color:white;}
