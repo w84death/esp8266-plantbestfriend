@@ -1,3 +1,12 @@
+/**
+ * ESP8266 PLANT BEST FRIEND
+ * -------------------------
+ * IoT Hardware & Software
+ * 
+ * by Krzysztof Krystian Jankowski // P1X 
+ * https://p1x.in / https://krzysztofjankowski.com
+ */
+
 #include <ESP8266WiFi.h>
 #include <ESP8266WebServer.h> 
 #include <FS.h>
@@ -7,23 +16,26 @@ const char* ssid = "P1X_2.4GHz";
 const char* password = "dawajneta";
 
 #define SOILPIN 0
-#define SOILMIN 300
+#define SOILMIN 250
 #define SOILMAX 600
 
 #define DHTPIN 2
 #define DHTTYPE DHT11
+#define DHTTWEAK 15
 
-DHT dht(DHTPIN, DHTTYPE, 15);
+#define WEBPORT 80
 
 float sens_temp = 0.0;
 float sens_humi = 0.0;
 float sens_mois = 0.0;
 
-ESP8266WebServer server(80);
-
 String getContentType(String filename);
 bool handleFileRead(String path);
 void updateSensorsReadings();
+
+
+DHT dht(DHTPIN, DHTTYPE, DHTTWEAK);
+ESP8266WebServer server(WEBPORT);
 
 void setup(void){
     Serial.begin(115200);
@@ -51,6 +63,7 @@ void setup(void){
     Serial.println("----------------------------------------");
 
     SPIFFS.begin();
+    
     server.onNotFound([]() {
       if (!handleFileRead(server.uri()))
         server.send(404, "text/plain", "404: Not Found");
@@ -94,10 +107,7 @@ String getContentType(String filename) {
 
 bool handleFileRead(String path) {
   Serial.println("\t-> Serving file: " + path);
-  if (path.endsWith("/")) {
-    path += "index.html";
-    updateSensorsReadings();
-  }
+  if (path.endsWith("/")) path += "index.html";
   String contentType = getContentType(path);
   String indexData;
    
@@ -105,7 +115,6 @@ bool handleFileRead(String path) {
     File file = SPIFFS.open(path, "r");
     size_t sent = server.streamFile(file, contentType);
     file.close();
-    
     return true;
   }
   Serial.println("\t-> File Not Found");
@@ -115,6 +124,7 @@ bool handleFileRead(String path) {
 void updateSensorsReadings() {
   sens_temp = dht.readTemperature();
   delay(100);
+  
   sens_humi = dht.readHumidity();
   delay(100);
   

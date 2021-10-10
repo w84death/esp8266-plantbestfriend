@@ -2,51 +2,14 @@
 <meta charset=utf-8>
 <link rel=stylesheet href=theme.css>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<title>🪴 // Plant Best Friend / ESP8266 IoT</title>
-<script>
-    var HttpClient = function() {
-        this.get = function(aUrl, aCallback) {
-            var httpReq = new XMLHttpRequest();
-            httpReq.onreadystatechange = function() { 
-                if (httpReq.readyState == 4 && httpReq.status == 200)
-                    aCallback(httpReq.responseText);
-            }
-            httpReq.open( "GET", aUrl, true );            
-            httpReq.send( null );
-        };
-    }
-    var client = new HttpClient();
-    var ForceUpdate = function() {
-        console.log("> Forcing update")
-        client.get('/update', function(){
-            console.log("> Done.")
-            RefreshData();
-        });
-    }
-    var RefreshData = function() {
-        console.log("> Getting fresh data...")
-        client.get('/temp', function(response) {
-            document.getElementById("temp").innerHTML = Math.round(response) + "°C";
-            console.log("> Temperature:" + response);
-        });
-        client.get('/humi', function(response) {
-            document.getElementById("humi").innerHTML = Math.round(response) + "%";
-            console.log("> Humidity:" + response);
-        });
-        client.get('/mois', function(response) {
-            document.getElementById("mois").innerHTML = Math.round(response) + "";
-            console.log("> Moisure:" + response);
-        });
-    }
-    ForceUpdate();
-    setInterval(RefreshData, 10000);
-</script>
+<title>🪴 ... // Plant Best Friend / ESP8266 IoT</title>
+<script src="script.js"></script>
 <header><h1>🪴 Plant Best Friend</h1></header>
 <main>
 <section>
     <status><icon>💦</icon><span id="humi">00%</span><small>ENVIRONMENT HUMIDITY</small> </status>
-    <status><icon>❄️</icon><span id="temp">00°C</span><small>ENVIRONMENT TEMPERATURE</small></status>
-    <status><icon>💧</icon><span id="mois">00</span><small>SOIL MOISURE QUALITY</small></status>
+    <status><icon>🌡️</icon><span id="temp">00°C</span><small>ENVIRONMENT TEMPERATURE</small></status>
+    <status><icon>🌱</icon><span id="mois">00</span><small>SOIL MOISURE QUALITY</small></status>
 </section> 
 
 <section>
