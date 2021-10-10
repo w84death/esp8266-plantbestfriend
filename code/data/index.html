@@ -1,25 +1,25 @@
 <html lang=en>
 <meta charset=utf-8>
 <link rel=stylesheet href=theme.css>
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel=icon type=image/svg+xml href=favicon.svg>
 <title>🪴 ... // Plant Best Friend / ESP8266 IoT</title>
-<script src="script.js"></script>
+<script src=script.js></script>
 <header><h1>🪴 Plant Best Friend</h1></header>
 <main>
 <section>
-    <status><icon>💦</icon><span id="humi">00%</span><small>ENVIRONMENT HUMIDITY</small> </status>
-    <status><icon>🌡️</icon><span id="temp">00°C</span><small>ENVIRONMENT TEMPERATURE</small></status>
-    <status><icon>🌱</icon><span id="mois">00</span><small>SOIL MOISURE QUALITY</small></status>
-</section> 
-
+    <status><icon>💦</icon><span id=humi>N/A</span><small>ENVIRONMENT HUMIDITY</small> </status>
+    <status><icon>🌡️</icon><span id=temp>N/A</span><small>ENVIRONMENT TEMPERATURE</small></status>
+    <status><icon>🌱</icon><span id=mois>N/A</span><small>SOIL MOISURE QUALITY</small></status>
+</section>
 <section>
     <div>
-        <status><img src="plant.gif" alt="VIP Plant"/></status>
-        <h2>Hello! I'm an ESP8266. I'm currently siting in the pot monitoring this awsome plant!</h2>
+        <h2>Hello! I'm an ESP8266. I'm currently sitting in the pot monitoring this awsome plant!</h2>
+        <status><img src=plant.gif alt="VIP Plant"/></status>
     </div>
 </section>
 <section>
-    <button id="refresh" onclick="RefreshData();">REFRESH</button>
+    <button id=refresh onclick="RefreshData();">REFRESH DATA</button>
 </section>
 <footer>
+    <p>📶 <span id=rssi>N/A</span> RSSI / 🔋 <span id=batt>N/A</span></p>
     &copy; 2020 <a href=cyfrowynomada.eu>Cyfrowy Nomada</a> / <a href=p1x.in>P1X</a>

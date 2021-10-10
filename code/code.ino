@@ -28,10 +28,12 @@ const char* password = "dawajneta";
 float sens_temp = 0.0;
 float sens_humi = 0.0;
 float sens_mois = 0.0;
+long rssi = 0;
 
 String getContentType(String filename);
 bool handleFileRead(String path);
 void updateSensorsReadings();
+void updateRSSI();
 
 
 DHT dht(DHTPIN, DHTTYPE, DHTTWEAK);
@@ -78,6 +80,10 @@ void setup(void){
     });
     server.on("/mois", []() {
         server.send(200, "text/plain", String(sens_mois, DEC));
+    });
+    server.on("/rssi", []() {
+        updateRSSI();
+        server.send(200, "text/plain", String(rssi, DEC));
     });
     server.on("/update", []() {
       updateSensorsReadings();
@@ -128,10 +134,17 @@ void updateSensorsReadings() {
   sens_humi = dht.readHumidity();
   delay(100);
   
-  sens_mois = 100 - map(analogRead(SOILPIN), 300, 600, 0, 100);
+  sens_mois = 100 - map(analogRead(SOILPIN), SOILMIN, SOILMAX, 0, 100);
 
   Serial.println("> Sensors reading: ");
   Serial.println("\t-> Temperature: " + String(sens_temp, DEC) + "°C");
   Serial.println("\t-> Humidity: " + String(sens_humi, DEC) + "%");
   Serial.println("\t-> Moisure: " + String(sens_mois, DEC) + "%");
+}
+
+void updateRSSI() {
+  rssi = WiFi.RSSI();
+  Serial.print("> Signal strength (RSSI):");
+  Serial.print(rssi);
+  Serial.println(" dBm");
 }
