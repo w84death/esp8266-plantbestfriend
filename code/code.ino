@@ -139,7 +139,7 @@ void updateSensorsReadings() {
   Serial.println("> Sensors reading: ");
   Serial.println("\t-> Temperature: " + String(sens_temp, DEC) + "°C");
   Serial.println("\t-> Humidity: " + String(sens_humi, DEC) + "%");
-  Serial.println("\t-> Moisure: " + String(sens_mois, DEC) + "%");
+  Serial.println("\t-> Moisture: " + String(sens_mois, DEC) + "%");
 }
 
 void updateRSSI() {
