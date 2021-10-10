@@ -13,4 +13,9 @@
 
 ## Tutorial
 
-Read the complete tutorial at [bits.p1x.in](bits.p1x.in/plant-best-friend-esp8266-monitoring-part-1)
+Read the complete tutorial at [bits.p1x.in](bits.p1x.in/plant-best-friend-esp8266-monitoring-part-1).
+
+## Live Demo
+
+If it has a power then it's available at [iot.p1x.in](https://iot.p1x.in/).
+
